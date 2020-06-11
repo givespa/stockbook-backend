@@ -14,44 +14,47 @@ More information about the plans for version 4 can be found in [the announcement
 The user guide corresponding to this version of the framework can be found
 [here](https://codeigniter4.github.io/userguide/). 
 
+# StockBook
 
-## Important Change with index.php
+Nombre que se le dio al Backend para la prueba de la vacante de programador full-stack.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+# Install.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+- Crear base de datos de nombre `stockbook`.
 
-**Please** read the user guide for a better explanation of how CI4 works!
-The user guide updating and deployment is a bit awkward at the moment, but we are working on it!
+- Clonar o colocar el proyecto en su carpeta `localhost`, la carpeta debe tener como nombre `stockbook`.
 
-## Repository Management
+- Abra su terminarl y ejecute la migración, Codigo: `php spark migrate`. 
 
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+# API.
 
-This repository is a "distribution" one, built by our release preparation script. 
-Problems with it can be raised on our forum, or as issues in the main repository.
+## API Host
 
-## Contributing
+https://localhost/
 
-We welcome contributions from the community.
+## Book
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing.md) section in the development repository.
+- Show. METHOD get
 
-## Server Requirements
+    URL: /Stockbook/public/api/book/show?id=2
+    
+    Para mostrar los registros recibe como parámetro: `id` id del registro del libro.
 
-PHP version 7.2 or higher is required, with the following extensions installed: 
+- Create. METHOD post
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+    URL: /Stockbook/public/api/book/create
+    
+    Para crear un registros recibe los siguientes parámetro: `name :string` nombre del libro, `author :string` nombre del autor del libro, `editorial :string` nombre de la editorial del libro, `year :date` año de publicación, `synopsis :string` sinopsis del libro.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+- Update. METHOD post
 
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+    URL: /Stockbook/public/api/book/update
+
+    Para actualizar un registro debe pasar el siguiente parámetro: ('id') id del libro,
+    y puede utilizar cualquiera de estos parámetros: `name :string` nombre del libro, `author :string` nombre del autor del libro, `editorial :string` nombre de la editorial del libro, `year :date` año de publicación, `synopsis :string` sinopsis del libro.
+
+- Delete. METHOD post
+
+    URL: /Stockbook/public/api/book/delete
+
+    Para eliminar un registro recibe como parámetros: ('id') id del libro.
